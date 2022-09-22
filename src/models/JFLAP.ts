@@ -19,8 +19,8 @@ export interface State {
 	};
     x:        string;
     y:        string;
-    initial?: string;
-    final?:   string;
+    initial?: {};
+    final?:   {};
 }
 
 export interface Transition {

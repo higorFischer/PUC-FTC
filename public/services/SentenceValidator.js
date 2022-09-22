@@ -18,6 +18,7 @@ const SentenceValidator = (AFD, sentence) => {
     if (currentState)
         logs.push({ currentState, sentence: !!sentence ? sentence : "λ" });
     console.log("R: ", logs.map(log => `[${log.currentState}, ${log.sentence}]`).join(" |- "));
+    //TODO: validar quando estado inicial for final
     if (currentState && AFD.isFinal(currentState) && sentence.length === 0)
         console.log("VALID", "( STOPED AT", currentState, ")");
     else

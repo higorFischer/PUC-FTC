@@ -10,7 +10,6 @@ const FileReader = () => {
 			<state id="0" name="q0">
 				<x>76.0</x>
 				<y>126.0</y>
-				<initial/>
 			</state>
 			<state id="1" name="q1">
 				<x>196.0</x>
@@ -19,11 +18,14 @@ const FileReader = () => {
 			<state id="2" name="q2">
 				<x>214.0</x>
 				<y>216.0</y>
+				<final/>
 			</state>
 			<state id="3" name="q3">
 				<x>351.0</x>
 				<y>126.0</y>
 				<final/>
+				<initial/>
+
 			</state>
 			<!--The list of transitions.-->
 			<transition>

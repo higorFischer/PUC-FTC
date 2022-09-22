@@ -12,7 +12,6 @@ const JFLAPConverter = () => {
         final = [];
         for (var state of object.structure.automaton.state) {
             AFN.set(state._attributes.id, new Map());
-            console.log(state);
             if (!!state.initial)
                 initial = state._attributes.id;
             if (!!state.final)
@@ -58,10 +57,8 @@ const JFLAPConverter = () => {
                 y: ''
             };
             if (state[0] === AFN.initial)
-                //@ts-ignore
                 stateObj["initial"] = {};
             if (AFN.isFinal(state[0]))
-                //@ts-ignore
                 stateObj["final"] = {};
             states.push(stateObj);
             for (var transition of [...state[1].entries()]) {

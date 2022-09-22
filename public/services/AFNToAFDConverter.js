@@ -8,6 +8,7 @@ const AFNToAFDConverter = () => {
         const AFN = AFNClass.states;
         const AFD = new Map();
         const pile = new Map();
+        //TODO: Inicializar pilha com item inicial e não com 0
         pile.set("0", new Map());
         for (var key of pile) {
             const newState = new Map();
@@ -23,6 +24,7 @@ const AFNToAFDConverter = () => {
             }
             AFD.set(state, newState);
         }
+        //TODO: Verificar se inicial vai ser final
         return new DeterministicFiniteAutomate_1.DeterministicFiniteAutomate(AFD, AFNClass.initial, AFNClass.finals);
     }
     function BuildByAFN(AFNClass) {
@@ -40,6 +42,7 @@ const AFNToAFDConverter = () => {
             }
             AFD.set(state, newState);
         }
+        //TODO: Verificar se inicial vai ser final
         return new DeterministicFiniteAutomate_1.DeterministicFiniteAutomate(AFD, AFNClass.initial, AFNClass.finals);
     }
     return {
