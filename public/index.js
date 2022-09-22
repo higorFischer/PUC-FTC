@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const AFNToAFDConverter_1 = require("./services/AFNToAFDConverter");
+const fileReader_1 = require("./services/fileReader");
+const JFLAPConverter_1 = require("./services/JFLAPConverter");
+const SentenceValidator_1 = require("./services/SentenceValidator");
+const result = (0, fileReader_1.FileReader)().convert();
+const AFN = (0, JFLAPConverter_1.JFLAPConverter)().toAFN(result);
+console.log("AFN (δ)", AFN);
+const AFD = (0, AFNToAFDConverter_1.AFNToAFDConverter)().BuildByPile(AFN);
+console.log("AFD (δ)", AFD);
+(0, SentenceValidator_1.SentenceValidator)(AFD, "");
+const jflap = (0, JFLAPConverter_1.JFLAPConverter)().toJFLAP(AFD);
+console.log((0, fileReader_1.FileReader)().toXML(jflap));
