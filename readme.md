@@ -21,7 +21,8 @@ EX: yarn start file=AFN.jff sentence=aaaabbab
 ```
 
 ```
-Nesse caso temos um arquivo de teste Default AFN.jff. Se não quiser especificar o arquivo, é só informar a sentenca.
+Nesse caso temos um arquivo de teste Default AFN.jff. 
+Se não quiser especificar o arquivo, é só informar a sentenca.
 
 EX: yarn start sentence=aaaabbab
 ```
