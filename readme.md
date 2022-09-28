@@ -1,7 +1,5 @@
 # Se não Tiver node.
-```
 [NodeJS](https://nodejs.org/en/download/)
-```
 
 # Para instalar dependências
 ```
