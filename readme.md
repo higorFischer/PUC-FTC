@@ -1,3 +1,8 @@
+# Se não Tiver node.
+```
+    https://nodejs.org/en/download/
+```
+
 # Para instalar dependências
 ```
 npm install 
