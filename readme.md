@@ -10,14 +10,12 @@ yarn
 # Para rodar 
 ```
 npm run start file=<filename> sentence=<sentence>
-```
 ou
-```
-yarn start file=<filename> sentence=<sentence>
-```
 
-```
-EX: yarn start file=AFN.jff sentence=aaaabbab
+yarn start file=<filename> sentence=<sentence>
+
+EX: 
+    yarn start file=AFN.jff sentence=aaaabbab
 ```
 
 ```
