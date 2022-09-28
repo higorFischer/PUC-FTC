@@ -9,7 +9,7 @@ const AFNToAFDConverter = () => {
         const AFD = new Map();
         const pile = new Map();
         //TODO: Inicializar pilha com item inicial e não com 0
-        pile.set("0", new Map());
+        pile.set(AFNClass.initial, new Map());
         for (var key of pile) {
             const newState = new Map();
             const state = key[0];
