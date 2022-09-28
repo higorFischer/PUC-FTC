@@ -1,75 +1,31 @@
 import { xml2js, js2xml } from "xml-js";
 import { JFLAP } from "../models/JFLAP";
-
+import FS from 'fs';
 export const FileReader = () =>{
-	const xml =
-		`<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.1.--><structure>
-		<type>fa</type>
-		<automaton>
-			<!--The list of states.-->
-			<state id="1" name="q1">
-				<final/>
-				<initial/>
-			</state>
-			<state id="2" name="q2">
-			</state>
-			<state id="3" name="q3">
-				<final/>
-			</state>
-			<!--The list of transitions.-->
-			<transition>
-				<from>1</from>
-				<to>2</to>
-				<read>a</read>
-			</transition>
-			<transition>
-				<from>1</from>
-				<to>1</to>
-				<read>b</read>
-			</transition>
-			<transition>
-				<from>1</from>
-				<to>3</to>
-				<read>b</read>
-			</transition>
-			<transition>
-				<from>2</from>
-				<to>2</to>
-				<read>a</read>
-			</transition>
-			<transition>
-				<from>2</from>
-				<to>3</to>
-				<read>a</read>
-			</transition>
-			<transition>
-				<from>2</from>
-				<to>3</to>
-				<read>b</read>
-			</transition>
-			<transition>
-				<from>3</from>
-				<to>3</to>
-				<read>b</read>
-			</transition>
-			<transition>
-				<from>3</from>
-				<to>1</to>
-				<read>b</read>
-			</transition>
-		</automaton>
-		</structure>
-	`;
+	let file = 'AFN.jff';
 
-	const result = xml2js(xml, { compact: true }) as JFLAP;
-
-
+	
 	return {
-		convert: () =>{
-			return result;
+		convert: (fileName: string) =>{
+			if(!fileName){
+				console.error("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+				console.error("Nenhum arquivo especificado. será utilizado o defaul AFN.jff....")
+				console.error("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+			} else 
+				file = fileName;
+			try {
+
+				const result = xml2js(
+					FS.readFileSync(file, 'utf8'), { compact: true }
+				) as JFLAP;
+				return result;
+			} catch {
+				return null;
+			}
+
 		},
 		toXML: (json: any) =>{
-			return js2xml(json, { compact: true });
+			return FS.writeFileSync(`AFD-${file}`, `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- PUC - AFN->AFD CONVERTER -->\n${js2xml(json, { compact: true, spaces: 2 })}`);
 		}
 	}
 }

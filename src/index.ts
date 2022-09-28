@@ -3,15 +3,33 @@ import { FileReader } from "./services/fileReader";
 import { JFLAPConverter } from "./services/JFLAPConverter";
 import { SentenceValidator } from "./services/SentenceValidator";
 
-const result = FileReader().convert();
 
-const AFN = JFLAPConverter().toAFN(result);
-console.log("AFN (δ)", AFN)
-const AFD = AFNToAFDConverter().BuildByPile(AFN);
-console.log("AFD (δ)", AFD)
+function run(){
+	const args = process.argv.reduce((a, b, index) => {
+		if(index <= 1) return {...a};
 
-SentenceValidator(AFD, "");
+		const propName = b.split("=")[0]
+		const propValue = b.split("=")[1] ?? true;
+		
+		return {...a, [propName]: propValue };
+		
+	}, {}) as { file: string, sentence: string, breakOnLog?: boolean }
 
-const jflap = JFLAPConverter().toJFLAP(AFD);
+	console.log(process.argv, args)
+	
+	const result = FileReader().convert(args.file);
+	const sentence = args.sentence;
 
-console.log(FileReader().toXML(jflap));
+	if(!result) return console.log("Arquivo com nome inválido");
+	if(!sentence) return console.log("Sentença não encontrada");
+
+	const AFN = JFLAPConverter().toAFN(result);
+	const AFD = AFNToAFDConverter().BuildByPile(AFN);
+	SentenceValidator(AFD, sentence, { breakOnLog: args.breakOnLog });
+	
+	const jflap = JFLAPConverter().toJFLAP(AFD);
+	
+	console.log(FileReader().toXML(jflap));
+}
+
+run();

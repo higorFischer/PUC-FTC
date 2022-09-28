@@ -1,7 +1,14 @@
 import { DeterministicFiniteAutomate } from "../models/DeterministicFiniteAutomate";
 import { FiniteAutomate } from "../models/FiniteAutomate";
 
-export const SentenceValidator = (AFD: FiniteAutomate<any>, sentence: string) =>{
+
+interface SentenceOptions {
+	breakOnLog?: boolean
+}
+
+export const SentenceValidator = (AFD: FiniteAutomate<any>, sentence: string, options?: SentenceOptions) => {
+	const { breakOnLog } = options ?? {};
+
 	const states = AFD.states;
 	const initial = AFD.initial;
 
@@ -19,7 +26,7 @@ export const SentenceValidator = (AFD: FiniteAutomate<any>, sentence: string) =>
 
 	if(currentState) logs.push({ currentState, sentence: !!sentence ? sentence : "λ"  });
 
-	console.log("R: ", logs.map(log => `[${log.currentState}, ${log.sentence}]`).join(" |- "))
+	console.log(logs.map(log => `[${log.currentState}, ${log.sentence}]`).join(`${breakOnLog ? "\n  v\n" : " |- "}`))
 
 	//TODO: validar quando estado inicial for final
 	if(currentState && AFD.isFinal(currentState) && sentence.length === 0)

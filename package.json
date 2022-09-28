@@ -7,7 +7,11 @@
     "start": "tsc -p . && node ./public/index.js"
   },
   "dependencies": {
+    "fs": "^0.0.1-security",
     "xml-js": "^1.6.11",
     "xml-reader": "^2.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.23"
   }
 }
