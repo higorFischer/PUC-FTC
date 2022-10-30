@@ -67,8 +67,8 @@ yarn start sentence=aaa breakOnLog
 
 ## Teste 1
 
-![test](./Testes/Teste1.png)
+![test](./api/Testes/Teste1.png)
 
 ## Teste 2
 
-![test](./Testes/Teste2.png)
+![test](./api/Testes/Teste2.png)
