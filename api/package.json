@@ -1,0 +1,19 @@
+{
+  "name": "Projeto1",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc -p . && node ./public/index.js"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "typescript": "^4.8.4",
+    "xml-js": "^1.6.11",
+    "xml-reader": "^2.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.23",
+    "tsc": "^2.0.4"
+  }
+}
