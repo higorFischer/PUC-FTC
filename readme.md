@@ -53,3 +53,4 @@ yarn start sentence=aaa breakOnLog
 # Leitura de formatos aceitos:
 ### JFLAP 
 
+
