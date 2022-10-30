@@ -76,6 +76,74 @@ export default function App() {
 		document.body.removeChild(downloadLink);
 	};
 
+	const downloadAFN = () => {
+		const csv = `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.1.--><structure>
+		<type>fa</type>
+		<automaton>
+			<!--The list of states.-->
+			<state id="1" name="q1">
+				<final/>
+				<initial/>
+			</state>
+			<state id="2" name="q2">
+			</state>
+			<state id="3" name="q3">
+				<final/>
+			</state>
+			<!--The list of transitions.-->
+			<transition>
+				<from>1</from>
+				<to>2</to>
+				<read>a</read>
+			</transition>
+			<transition>
+				<from>1</from>
+				<to>1</to>
+				<read>b</read>
+			</transition>
+			<transition>
+				<from>1</from>
+				<to>3</to>
+				<read>b</read>
+			</transition>
+			<transition>
+				<from>2</from>
+				<to>1</to>
+				<read>a</read>
+			</transition>
+			<transition>
+				<from>2</from>
+				<to>3</to>
+				<read>a</read>
+			</transition>
+			<transition>
+				<from>2</from>
+				<to>3</to>
+				<read>b</read>
+			</transition>
+			<transition>
+				<from>3</from>
+				<to>3</to>
+				<read>b</read>
+			</transition>
+			<transition>
+				<from>3</from>
+				<to>1</to>
+				<read>b</read>
+			</transition>
+		</automaton>
+	</structure>`;
+		var downloadLink = document.createElement("a");
+		var blob = new Blob(["\ufeff", csv]);
+		var url = URL.createObjectURL(blob);
+		downloadLink.href = url;
+		downloadLink.download = `AFN.csv`;
+
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	};
+
 	return (
 		<div style={{ display: "flex" }}>
 			<div
@@ -89,6 +157,9 @@ export default function App() {
 				}}
 			>
 				<div style={{ height: "20vh" }}>
+					<button onClick={downloadAFN}>
+						PARA BAIXAR UM ARUQUIVO DE TESTE CLIQUE AQUI
+					</button>
 					<input type="file" name="file" onChange={changeHandler} />
 					<p>Filename: {selectedFile?.name}</p>
 					{error && (
@@ -96,6 +167,7 @@ export default function App() {
 							!!!Arquivo inválido!!!!
 						</h4>
 					)}
+
 					<button onClick={downloadAFD}>Download AFD</button>
 					<div>Intial: {AFN?.initial}</div>
 					<div>Final: {AFN?.finals?.map((final) => `${final},`)}</div>
